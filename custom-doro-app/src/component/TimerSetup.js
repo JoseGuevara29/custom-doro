@@ -16,7 +16,7 @@ export default function TimerSetup() {
         {" "}
         <TextField
           id="filled-number"
-          label="Number"
+          label="Hours"
           type="number"
           InputLabelProps={{
             shrink: true,
@@ -28,7 +28,7 @@ export default function TimerSetup() {
         {" "}
         <TextField
           id="filled-number"
-          label="Number"
+          label="Minutes"
           type="number"
           InputLabelProps={{
             shrink: true,

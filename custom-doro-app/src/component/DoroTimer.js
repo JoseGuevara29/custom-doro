@@ -1,42 +1,31 @@
+import { Settings } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
-import { Fragment } from "react";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import PauseButton from "./PauseButton";
+import PlayButton from "./PlayButton";
+import SetupButton from "./SetupButton";
 
 export default function DoroTimer() {
-  const [minutes, setMinutes] = useState(60);
-  const [seconds, setSeconds] = useState(5);
-  const [displayText, setDisplayText] = useState(false);
-
-  useEffect(() => {
-    let interval = setInterval(() => {
-      clearInterval(interval);
-      if (seconds === 0) {
-        if (minutes !== 0) {
-          setSeconds(59);
-          setMinutes(minutes - 1);
-        } else {
-          let minutes = displayText ? 60 : 20;
-          let seconds = 59;
-          setSeconds(seconds);
-          setMinutes(minutes);
-          setDisplayText(!displayText);
-        }
-      } else {
-        setSeconds(seconds - 1);
-      }
-    }, 1000);
-  }, [seconds]);
-
-  const timerMinutes = minutes < 10 ? `0${minutes}` : minutes;
-  const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
   return (
-    <Fragment>
-      <section className="timer-container">
-        <section className="timer">
-          {displayText && <div> Break time!!</div>}
-          <div className="timer-clock">{timerMinutes}:{timerSeconds}</div>
-        </section>
-      </section>
-    </Fragment>
+    <div>
+      <CircularProgressbar
+        value={50}
+        text={`${50}`}
+        styles={buildStyles({
+          textColor: "#fff",
+          pathColor: "#0091ff",
+          trailColor: "#828587",
+        })}
+      />
+      <div style={{marginTop: '20px'}}>
+        <PlayButton/>
+        <PauseButton/>
+      </div>
+      <div style={{marginTop: '10px'}}>
+        <SetupButton/>
+      </div>
+    </div>
   );
 }
